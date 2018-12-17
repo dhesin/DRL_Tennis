@@ -19,10 +19,9 @@ The meta-agent learns through shared memory of experiences of both agent and out
 
 The actor takes the state of the environment and outputs the action vector with continuous values. The critic takes both state and action vectors and outputs the Q value of the state-action pair. The actor network is FCN with 3 hidden layers of 128 neurons each. The critic network is also FCN network with 3 hidden layers of 128 neurons each. 
 
-Below is the plot of average score over 100 consecutive episode.
+Environment is solved at episode 2800. Below is the plot of average score over 100 consecutive episode. 
 
 ![](AverageScore.png)
 
-
-
+This solution makes use of meta-agent and collaboration approach. Self-play approach has also been tried but training was not successful. Future work would be to try to solve tennis environment with self-play approach. Priority experience replay, learning rate scheduling and other RL methods such as PPO would help self-play approach to work.
 
