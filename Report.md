@@ -13,15 +13,13 @@ The task is episodic, and in order to solve the environment, agents must get an 
 
 The environment is considered solved, when the average (over 100 episodes) of those **scores** is at least +0.5.
 
-The agent implements Multi Agent Deep Deterministic Policy (MADDPG) Gradient learning method for continuous action spaces. The agent learns with actor-critic method in which both actor and critic is implemented with Fully Connected Network (FCN). There are two copies of both actor and critic networks called local and target networks. Target network weights are copied from local network weights after each learning step through soft update to blend in the new weights into previous weights.
+The agent implements Multi Agent Deep Deterministic Policy Gradient (MADDPG) learning method for continuous action spaces. The agent learns with actor-critic method in which both actor and critic is implemented with Fully Connected Network (FCN). There are two copies of both actor and critic networks called local and target networks. Target network weights are copied from local network weights after each learning step through soft update to blend in the new weights into previous weights.
 
-The meta-agent learns through shared memory of experiences of both agent and outputs actions of each agent. The critic also learns by observing state and action of each agent. 
+The actor learns through self-play by storing both experiences for training but acts on its own state/observation. The critic also learns through self play during training but outputs state-action value based on both observation/state and its' agents' action. The actor network is FCN with 3 hidden layers of 128 neurons each. The critic network is also FCN network with 3 hidden layers of 128 neurons each. 
 
-The actor takes the state of the environment and outputs the action vector with continuous values. The critic takes both state and action vectors and outputs the Q value of the state-action pair. The actor network is FCN with 3 hidden layers of 128 neurons each. The critic network is also FCN network with 3 hidden layers of 128 neurons each. 
-
-Environment is solved at episode 2800. Below is the plot of average score over 100 consecutive episode. 
+Environment is solved at episode 2000. Below is the plot of average score over 100 consecutive episode. 
 
 ![](AverageScore.png)
 
-This solution makes use of meta-agent and collaboration approach. Self-play approach has also been tried but training was not successful. Future work would be to try to solve tennis environment with self-play approach. Priority experience replay, learning rate scheduling and other RL methods such as PPO would help self-play approach to work.
+Although solution is reached at episode 2000, learning is not stable and average score decreases/increases during later episodes. Priority experience replay, learning rate scheduling would help the training to stabilize.
 
